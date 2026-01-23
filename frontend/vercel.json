@@ -15,14 +15,11 @@
       "dest": "/api$1"
     },
     {
-      "src": "/(.*)",
-      "dest": "/index.html",
-      "continue": true
+      "handle": "filesystem"
     },
     {
-      "src": "/(.*\\.(js|css|map|ico|png|jpg|svg))",
-      "dest": "/$1"
+      "src": "/.*",
+      "dest": "/index.html"
     }
   ]
 }
-
