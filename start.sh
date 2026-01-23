@@ -8,22 +8,23 @@ echo ""
 # Check if backend is already running
 if ! nc -z localhost 8000 2>/dev/null; then
     echo "Starting Backend..."
-    cd backend
-    
+    cd backend || exit 1
+
     # Activate virtual environment if it exists
     if [ -d "venv" ]; then
         source venv/bin/activate 2>/dev/null || . venv/Scripts/activate
     fi
-    
-    uvicorn main:app --reload &
+
+    python -m uvicorn main:app --host 0.0.0.0 --port 8000 &
     BACKEND_PID=$!
+
     cd ..
-    
     echo "Backend started with PID: $BACKEND_PID"
     sleep 3
 else
     echo "Backend already running on port 8000"
 fi
+
 
 echo ""
 
