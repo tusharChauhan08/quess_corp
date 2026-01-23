@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { dashboardAPI, employeeAPI, attendanceAPI } from '../api/client';
+import { dashboardAPI } from '../api/client';
 
 function Dashboard() {
   const [loading, setLoading] = useState(true);

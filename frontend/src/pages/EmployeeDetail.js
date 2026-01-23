@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { employeeAPI, attendanceAPI } from '../api/client';
 import Modal from '../components/Modal';
@@ -15,11 +15,7 @@ function EmployeeDetail() {
   const [success, setSuccess] = useState(null);
   const [showModal, setShowModal] = useState(false);
 
-  useEffect(() => {
-    fetchEmployeeData();
-  }, [id]);
-
-  const fetchEmployeeData = async () => {
+  const fetchEmployeeData = useCallback(async () => {
     try {
       setLoading(true);
       setError(null);
@@ -34,7 +30,11 @@ function EmployeeDetail() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [id]);
+
+  useEffect(() => {
+    if (id) fetchEmployeeData();
+  }, [id, fetchEmployeeData]);
 
   const handleMarkAttendance = async (data) => {
     try {
@@ -66,7 +66,9 @@ function EmployeeDetail() {
   return (
     <div>
       <div className="back-btn">
-        <a onClick={() => navigate('/employees')}>← Back to Employees</a>
+        <button className="link-button" onClick={() => navigate('/employees')}>
+          ← Back to Employees
+        </button>
       </div>
 
       {error && <div className="alert alert-error">{error}</div>}
