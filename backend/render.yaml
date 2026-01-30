@@ -1,7 +1,9 @@
-[build]
-  command = "pip install -r requirements.txt && uvicorn main:app --host 0.0.0.0 --port 8000"
-  functions = { api = "backend" }
-
-[env]
-  PYTHONUNBUFFERED = "1"
-  DATABASE_URL = "postgresql://user:password@your-db-host:5432/hrms_lite"
+services:
+  - type: web
+    name: quesscorp-api
+    env: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port 10000
+    runtime:
+      python: 3.11.9
