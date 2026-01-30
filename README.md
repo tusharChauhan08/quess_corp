@@ -54,7 +54,7 @@ cd quess_corp/backend
 
 Live Frontend: https://quess-corp-h55ko121r-tusharchauhan08s-projects.vercel.app/
 
-Live Backend (API docs): https://quesscorp-production.up.railway.app/docs
+Live Backend (API docs): https://quess-corp.onrender.com/docs
 
 HRMS Lite is a compact human resources web app that helps small teams track employees and daily attendance. It combines a React single-page app with a FastAPI backend and a relational database.
 
